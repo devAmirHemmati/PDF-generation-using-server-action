@@ -63,7 +63,7 @@ export default function HomePage() {
         <PdfDocument />
       </div>
 
-      <h1 className="text-4xl border-b pb-2">Version 1.1.0</h1>
+      <h1 className="text-4xl border-b pb-2">Version 1.2.0</h1>
 
       <Button disabled={loading} onClick={onGenPdfClick}>
         Get PDF
