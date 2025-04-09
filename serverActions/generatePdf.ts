@@ -1,31 +1,24 @@
 "use server";
-import { Browser } from "puppeteer-core";
+import { Browser } from "playwright-core";
 
 export async function generatePDF(html: string): Promise<Buffer | null> {
-  // Initiate the browser instance
   let browser: Browser | undefined | null;
 
-  // Check if the environment is development
   if (process.env.NODE_ENV !== "development") {
     // Import the packages required on production
-    const chromium = require("chrome-aws-lambda");
-    const puppeteer = require("puppeteer-core");
+    const chromium = require("@sparticuz/chromium");
+    const { chromium: playwrightChromium } = require("playwright-core");
 
-    // Assign the browser instance
-    browser = await puppeteer.launch({
+    // Assign the browser instance using Playwright
+    browser = await playwrightChromium.launch({
       executablePath: await chromium.executablePath(),
-      headless: true,
-      args: [
-        ...chromium.args,
-        "--disable-extensions",
-        "--hide-scrollbars",
-        "--disable-web-security",
-      ],
+      headless: chromium.headless,
+      args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
     });
   } else {
-    // Else, use the full version of puppeteer
-    const puppeteer = require("puppeteer");
-    browser = await puppeteer.launch({
+    // Use Playwright's full version for development
+    const { chromium } = require("playwright");
+    browser = await chromium.launch({
       headless: true,
     });
   }
@@ -48,7 +41,7 @@ export async function generatePDF(html: string): Promise<Buffer | null> {
 
     await browser.close();
 
-    return pdfBuffer as never;
+    return pdfBuffer;
   }
 
   return null;
