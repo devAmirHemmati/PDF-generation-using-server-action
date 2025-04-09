@@ -8,7 +8,7 @@ export async function generatePDF(html: string): Promise<Buffer | null> {
   // Check if the environment is development
   if (process.env.NODE_ENV !== "development") {
     // Import the packages required on production
-    const chromium = require("@sparticuz/chromium");
+    const chromium = require("chrome-aws-lambda");
     const puppeteer = require("puppeteer-core");
 
     // Assign the browser instance
