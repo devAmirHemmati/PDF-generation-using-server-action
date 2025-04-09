@@ -48,7 +48,7 @@ export async function generatePDF(html: string): Promise<Buffer | null> {
 
     await browser.close();
 
-    return pdfBuffer;
+    return pdfBuffer as never;
   }
 
   return null;
