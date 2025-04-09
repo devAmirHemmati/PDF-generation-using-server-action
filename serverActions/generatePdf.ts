@@ -14,10 +14,15 @@ export async function generatePDF(html: string): Promise<Buffer | null> {
     // Assign the browser instance
     browser = await puppeteer.launch({
       executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
+      headless: "new",
       ignoreHTTPSErrors: true,
       defaultViewport: chromium.defaultViewport,
-      args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+      args: [
+        ...chromium.args,
+        "--disable-extensions",
+        "--hide-scrollbars",
+        "--disable-web-security",
+      ],
     });
   } else {
     // Else, use the full version of puppeteer
