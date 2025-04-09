@@ -14,9 +14,7 @@ export async function generatePDF(html: string): Promise<Buffer | null> {
     // Assign the browser instance
     browser = await puppeteer.launch({
       executablePath: await chromium.executablePath(),
-      headless: "new",
-      ignoreHTTPSErrors: true,
-      defaultViewport: chromium.defaultViewport,
+      headless: true,
       args: [
         ...chromium.args,
         "--disable-extensions",
