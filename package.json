@@ -11,12 +11,12 @@
   "dependencies": {
     "@sparticuz/chromium": "^133.0.0",
     "next": "15.2.5",
-    "playwright": "^1.51.1",
     "playwright-core": "^1.51.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "playwright": "^1.51.1",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20.17.30",
@@ -24,7 +24,6 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.5",
-    "puppeteer": "21.9.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
