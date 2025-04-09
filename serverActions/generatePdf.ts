@@ -12,14 +12,14 @@ export async function generatePDF(html: string): Promise<Buffer | null> {
     // Assign the browser instance using Playwright
     browser = await playwrightChromium.launch({
       executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
+      headless: true, // Ensure this is a boolean value (true or false)
       args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
     });
   } else {
     // Use Playwright's full version for development
     const { chromium } = require("playwright");
     browser = await chromium.launch({
-      headless: true,
+      headless: true, // Ensure this is a boolean value (true or false)
     });
   }
 
